@@ -8,17 +8,17 @@ package com.baidu.trace.api.track;
  */
 public class IllegalTrackArgumentException extends RuntimeException {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public IllegalTrackArgumentException() {
-		super();
-	}
+    public IllegalTrackArgumentException() {
+        super();
+    }
 
-	public IllegalTrackArgumentException(String message) {
-		super(message);
-	}
+    public IllegalTrackArgumentException(String message) {
+        super(message);
+    }
 
 }

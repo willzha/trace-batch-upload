@@ -11,23 +11,23 @@ import java.net.URLEncoder;
  */
 public class HttpUtils {
 
-	/**
-	 * 编码
-	 */
-	public static final String CHAR_ENC = "UTF-8";
+    /**
+     * 编码
+     */
+    public static final String CHAR_ENC = "UTF-8";
 
-	/**
-	 * url编码
-	 * 
-	 * @param parameter
-	 * @return
-	 */
-	public static String urlEncode(String parameter) {
-		try {
-			return URLEncoder.encode(parameter, CHAR_ENC);
-		} catch (UnsupportedEncodingException e) {
-			return parameter;
-		}
-	}
+    /**
+     * url编码
+     * 
+     * @param parameter
+     * @return
+     */
+    public static String urlEncode(String parameter) {
+        try {
+            return URLEncoder.encode(parameter, CHAR_ENC);
+        } catch (UnsupportedEncodingException e) {
+            return parameter;
+        }
+    }
 
 }

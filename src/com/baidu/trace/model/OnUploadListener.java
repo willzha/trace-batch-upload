@@ -10,17 +10,16 @@ import com.baidu.trace.api.track.UploadResponse;
  */
 public interface OnUploadListener {
 
-	/**
-	 * 上传成功回调
-	 * 
-	 * @param responseId
-	 *            响应ID（与请求ID对应）
-	 */
-	void onSuccess(long responseId);
+    /**
+     * 上传成功回调
+     * 
+     * @param responseId 响应ID（与请求ID对应）
+     */
+    void onSuccess(long responseId);
 
-	/**
-	 * 上传失败回调
-	 */
-	void onFailed(UploadResponse response);
+    /**
+     * 上传失败回调
+     */
+    void onFailed(UploadResponse response);
 
 }
