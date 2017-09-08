@@ -1,0 +1,1 @@
+BUILD_SUBMITTER -x -m baidu/yingyan/trace-batch-upload -c "cd baidu/yingyan/trace-batch-upload && mkdir output &&cp BCLOUD ./output/" -u ./
