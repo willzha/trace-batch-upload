@@ -13,12 +13,9 @@ echo "CREATE DIRS"
 mkdir temp
 mkdir outputProguard
 
-cd output/
-cd ..
-
 echo "Build release jar"
 echo "Compile java source codes"
-$JAVA_HOME_1_6/bin/javac  -encoding UTF-8  -sourcepath  src/main/java  -d temp/ -g:none -target 1.6 src/main/java/${PACKAGE}/*.java  src/main/java/${PACKAGE}/core/*.java src/main/java/${PACKAGE}/api/*/*.java src/main/java/${PACKAGE}/model/*.java src/main/java/${PACKAGE}/util/*.java
+$JAVA_HOME_1_6/bin/javac  -encoding UTF-8  -sourcepath  ../src  -d temp/ -g:none -target 1.6 src/${PACKAGE}/*.java  src/${PACKAGE}/core/*.java src/${PACKAGE}/api/*/*.java src/${PACKAGE}/model/*.java src/${PACKAGE}/util/*.java
 cd temp/
 echo "Generate release jar"
 $JAVA_HOME_1_6/bin/jar -cvf BaiduTraceSDK_${sdkVersion}.jar ${PACKAGE}/*.class ${PACKAGE}/api/*/*.class ${PACKAGE}/model/*.class ${PACKAGE}/util/*.class
@@ -32,7 +29,7 @@ $JAVA_HOME_1_6/bin/java -jar proguard.jar -injars outputProguard/BaiduTraceSDK_N
 cp outputProguard/BaiduTraceSDK_${sdkVersion}.jar output/BaiduTraceSDK_${sdkVersion}.jar
 cp outputProguard/proguard_Debug.map output/BaiduTraceSDK_${sdkVersion}_proguard_Debug.map
 cp outputProguard/proguard.map output/BaiduTraceSDK_${sdkVersion}_proguard.map
-cp output_local/BaiduTraceSDK_${sdkVersion}_Docs.zip output/BaiduTraceSDK_${sdkVersion}_Docs.zip
+cp doc.zip output/BaiduTraceSDK_${sdkVersion}_Docs.zip
 
 
 cd output
