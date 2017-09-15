@@ -15,7 +15,7 @@ mkdir outputProguard
 
 echo "Build release jar"
 echo "Compile java source codes"
-$JAVA_HOME_1_6/bin/javac  -encoding UTF-8  -sourcepath  ../src  -d temp/ -g:none -target 1.6 src/${PACKAGE}/*.java  src/${PACKAGE}/core/*.java src/${PACKAGE}/api/*/*.java src/${PACKAGE}/model/*.java src/${PACKAGE}/util/*.java
+$JAVA_HOME_1_6/bin/javac  -encoding UTF-8  -sourcepath  ../src  -d temp/ -g:none -target 1.6 ../src/${PACKAGE}/*.java  ../src/${PACKAGE}/core/*.java ../src/${PACKAGE}/api/*/*.java ../src/${PACKAGE}/model/*.java ../src/${PACKAGE}/util/*.java
 cd temp/
 echo "Generate release jar"
 $JAVA_HOME_1_6/bin/jar -cvf BaiduTraceSDK_${sdkVersion}.jar ${PACKAGE}/*.class ${PACKAGE}/api/*/*.class ${PACKAGE}/model/*.class ${PACKAGE}/util/*.class
