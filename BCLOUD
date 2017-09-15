@@ -1,1 +1,1 @@
-BUILD_SUBMITTER -x -m baidu/yingyan/trace-batch-upload -c "cd baidu/yingyan/trace-batch-upload && mkdir output &&cp BCLOUD ./output/" -u ./
+BUILD_SUBMITTER -x -m baidu/yingyan/trace-batch-upload -c "cd baidu/yingyan/trace-batch-upload/script && mkdir output && chmod 777 build_sdk_agile.sh && sh ./build_sdk_agile.sh" -u ./
