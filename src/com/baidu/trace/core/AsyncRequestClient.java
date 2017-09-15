@@ -41,17 +41,12 @@ public class AsyncRequestClient {
     /**
      * 每个请求中轨迹点数量
      */
-    private static int pointSize = 100;
+    private static int pointSize = 200;
 
     /**
      * 每分钟并发数
      */
-    private static long minutesConcurrency = 1000 * pointSize;
-
-    /**
-     * 每秒并发数
-     */
-    private static long secondsConcurrency = (long) Math.floor(minutesConcurrency / pointSize / 60) + 1;
+    private static long minutesConcurrency = 5000;
 
     /**
      * 每分钟并发控制器
@@ -118,13 +113,21 @@ public class AsyncRequestClient {
     }
 
     /**
+     * 设置每个请求轨迹点数量
+     * 
+     * @param pointSize
+     */
+    public void setRequestPointSize(int pointSize) {
+        AsyncRequestClient.pointSize = pointSize;
+    }
+
+    /**
      * 设置每分钟并发数
      * 
      * @param concurrencyRequest
      */
     public void setConcurrency(int concurrency) {
-        AsyncRequestClient.minutesConcurrency = concurrency;
-        AsyncRequestClient.secondsConcurrency = concurrency / 60;
+        AsyncRequestClient.minutesConcurrency = concurrency / pointSize;
     }
 
     /**
@@ -223,15 +226,9 @@ public class AsyncRequestClient {
             e1.printStackTrace();
             return true;
         }
-        System.out.println("currentMinutes : " + currentMinutes + " , currentMinutesCounts : " + currentMinutesCounts
-                + ", counter size : " + minutesCounter.size());
-        System.out.println("currentSeconds : " + currentSeconds + " , currentSecondsCounts : " + currentSecondsCounts
-                + ", counter size : " + secondsCounter.size());
 
-        System.out.println(
-                "minutesConcurrency : " + minutesConcurrency + " , secondsConcurrency : " + secondsConcurrency);
-
-        if (currentMinutesCounts > minutesConcurrency || currentSecondsCounts > secondsConcurrency) {
+        if (currentMinutesCounts * pointSize > minutesConcurrency
+                || currentSecondsCounts * pointSize > minutesConcurrency / 60) {
             return false;
         }
         return true;

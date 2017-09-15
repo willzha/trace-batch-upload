@@ -76,9 +76,30 @@ public class LBSTraceClient {
 
     /**
      * 设置并发数，默认5000（单位：次/每分钟）
+     * 
+     * @param concurrency
+     * @return
      */
-    public void setConcurrency(int concurrency) {
+    public boolean setConcurrency(int concurrency) {
+        if (concurrency <= 0) {
+            return false;
+        }
         AsyncRequestClient.getInstance().setConcurrency(concurrency);
+        return true;
+    }
+
+    /**
+     * 设置每个请求的轨迹点数量（为便于并发控制，尽量保持各请求轨迹点数量一致；实际情况无法保持一致时，请设置成最大值200）
+     * 
+     * @param pointSize
+     * @return
+     */
+    public boolean setRequestPointSize(int pointSize) {
+        if (pointSize <= 0 || pointSize > 200) {
+            return false;
+        }
+        AsyncRequestClient.getInstance().setRequestPointSize(pointSize);
+        return true;
     }
 
     /**

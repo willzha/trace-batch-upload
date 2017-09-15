@@ -1,0 +1,24 @@
+-dontusemixedcaseclassnames
+
+-keep  public class com.baidu.trace.LBSTraceClient {
+	public  <fields>;
+    public  <methods>;
+}
+-keep  public class com.baidu.trace.Trace {
+	public  <fields>;
+    public  <methods>;
+}
+-keep  public class com.baidu.trace.model.* {
+	public  <fields>;
+    public  <methods>;
+}
+-keep  public class com.baidu.trace.api.*.* {
+	public  <fields>;
+    public  <methods>;
+}
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+#不混淆泛型、内部类、异常、过时
+-keepattributes Signature,InnerClasses,Exceptions,Deprecated
