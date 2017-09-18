@@ -15,16 +15,16 @@ mkdir outputProguard
 
 echo "Build release jar"
 echo "Compile java source codes"
-$JAVA_HOME_1_6/bin/javac  -encoding UTF-8  -sourcepath  ../src  -classpath  ../referenced_libraries/guava-23.0.jar:../referenced_libraries/commons-beanutils-1.8.0.jar:../referenced_libraries/commons-collections-3.2.1.jar:../referenced_libraries/commons-lang-2.5.jar:../referenced_libraries/commons-logging-1.1.1.jar:../referenced_libraries/ezmorph-1.0.6.jar:../referenced_libraries/json-lib-2.4-jdk15.jar -d temp/ -g:none -target 1.6 ../src/${PACKAGE}/*.java  ../src/${PACKAGE}/core/*.java ../src/${PACKAGE}/api/*/*.java ../src/${PACKAGE}/model/*.java ../src/${PACKAGE}/util/*.java
+$JAVA_HOME_1_7/bin/javac  -target 1.7 -encoding UTF-8  -sourcepath  ../src  -classpath  ../referenced_libraries/guava-23.0.jar:../referenced_libraries/commons-beanutils-1.8.0.jar:../referenced_libraries/commons-collections-3.2.1.jar:../referenced_libraries/commons-lang-2.5.jar:../referenced_libraries/commons-logging-1.1.1.jar:../referenced_libraries/ezmorph-1.0.6.jar:../referenced_libraries/json-lib-2.4-jdk15.jar -d temp/ -g:none -target 1.6 ../src/${PACKAGE}/*.java  ../src/${PACKAGE}/core/*.java ../src/${PACKAGE}/api/*/*.java ../src/${PACKAGE}/model/*.java ../src/${PACKAGE}/util/*.java
 cd temp/
 echo "Generate release jar"
-$JAVA_HOME_1_6/bin/jar -cvf BaiduTraceSDK_${sdkVersion}.jar ${PACKAGE}/*.class ${PACKAGE}/api/*/*.class ${PACKAGE}/model/*.class ${PACKAGE}/util/*.class
+$JAVA_HOME_1_7/bin/jar -cvf BaiduTraceSDK_${sdkVersion}.jar ${PACKAGE}/*.class ${PACKAGE}/api/*/*.class ${PACKAGE}/model/*.class ${PACKAGE}/util/*.class
 cd ..
 cp temp/BaiduTraceSDK_${sdkVersion}.jar outputProguard/BaiduTraceSDK_NoProguard_${sdkVersion}.jar
 
 echo "Proguard jar"
-$JAVA_HOME_1_6/bin/java -jar proguard.jar -injars outputProguard/BaiduTraceSDK_NoProguard_${sdkVersion}_Debug.jar  -outjars outputProguard/BaiduTraceSDK_${sdkVersion}_Debug.jar -printmapping outputProguard/proguard_Debug.map @proguard_lbs.txt
-$JAVA_HOME_1_6/bin/java -jar proguard.jar -injars outputProguard/BaiduTraceSDK_NoProguard_${sdkVersion}.jar  -outjars outputProguard/BaiduTraceSDK_${sdkVersion}.jar -printmapping outputProguard/proguard.map @proguard_lbs.txt
+$JAVA_HOME_1_7/bin/java -jar proguard.jar -injars outputProguard/BaiduTraceSDK_NoProguard_${sdkVersion}_Debug.jar  -outjars outputProguard/BaiduTraceSDK_${sdkVersion}_Debug.jar -printmapping outputProguard/proguard_Debug.map @proguard_lbs.txt
+$JAVA_HOME_1_7/bin/java -jar proguard.jar -injars outputProguard/BaiduTraceSDK_NoProguard_${sdkVersion}.jar  -outjars outputProguard/BaiduTraceSDK_${sdkVersion}.jar -printmapping outputProguard/proguard.map @proguard_lbs.txt
 
 cp outputProguard/BaiduTraceSDK_${sdkVersion}.jar output/BaiduTraceSDK_${sdkVersion}.jar
 cp outputProguard/proguard_Debug.map output/BaiduTraceSDK_${sdkVersion}_proguard_Debug.map
