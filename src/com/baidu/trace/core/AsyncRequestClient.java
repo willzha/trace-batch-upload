@@ -1,19 +1,6 @@
 package com.baidu.trace.core;
 
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
-
-import com.baidu.trace.core.NetConstants;
-import com.baidu.trace.util.TimeUtils;
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
 
 /**
  * 异步请求客户端
@@ -185,16 +172,16 @@ public class AsyncRequestClient {
      * 执行任务
      */
     private static void doTask() {
+        TaskCallable<String> taskCallable = null;
         while (isRunning) {
+            try {
+                taskCallable = waitingQueue.take();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+                continue;
+            }
             // 并发控制
             if (concurrencyControl()) {
-                TaskCallable<String> taskCallable;
-                try {
-                    taskCallable = waitingQueue.take();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    continue;
-                }
                 // 若未超并发，执行任务
                 executorService.submit(taskCallable);
             } else {
@@ -205,7 +192,9 @@ public class AsyncRequestClient {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                executorService.submit(taskCallable);
             }
+
         }
     }
 
@@ -226,6 +215,8 @@ public class AsyncRequestClient {
             e1.printStackTrace();
             return true;
         }
+
+        System.out.println("currentSecondsCounts * pointSize : " + currentSecondsCounts * pointSize);
 
         if (currentMinutesCounts * pointSize > minutesConcurrency
                 || currentSecondsCounts * pointSize > minutesConcurrency / 60) {
