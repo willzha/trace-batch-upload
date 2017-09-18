@@ -60,7 +60,7 @@ public class TrackUtils {
 
         parameters.append("&coord_type_input=").append(trackPoint.getCoordType().name());
         parameters.append("&speed=").append(trackPoint.getSpeed());
-        parameters.append("&directio=").append(trackPoint.getDirection());
+        parameters.append("&direction=").append(trackPoint.getDirection());
         parameters.append("&height=").append(trackPoint.getHeight());
         parameters.append("&radius=").append(trackPoint.getRadius());
 
