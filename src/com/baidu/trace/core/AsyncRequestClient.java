@@ -127,7 +127,7 @@ public class AsyncRequestClient {
      * @param concurrencyRequest
      */
     public void setConcurrency(int concurrency) {
-        AsyncRequestClient.minutesConcurrency = concurrency / pointSize;
+        AsyncRequestClient.minutesConcurrency = concurrency;
     }
 
     /**
