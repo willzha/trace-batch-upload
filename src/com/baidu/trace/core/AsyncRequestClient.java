@@ -190,7 +190,7 @@ public class AsyncRequestClient {
             try {
                 taskCallable = waitingQueue.take();
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                // 该异常无需处理，继续轮询即可
                 continue;
             }
             // 并发控制
@@ -203,7 +203,7 @@ public class AsyncRequestClient {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    // 该异常无需处理
                 }
                 executorService.submit(taskCallable);
             }
