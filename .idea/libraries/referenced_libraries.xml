@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="referenced_libraries">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/ezmorph-1.0.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/commons-beanutils-1.8.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/commons-lang-2.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/commons-collections-3.2.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/commons-logging-1.1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/guava-23.0-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/guava-23.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/referenced_libraries/json-lib-2.4-jdk15.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
